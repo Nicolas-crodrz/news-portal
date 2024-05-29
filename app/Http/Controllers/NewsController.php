@@ -23,15 +23,18 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'media' => 'nullable|file|mimes:jpg,jpeg,png,gif'
         ]);
 
-        $news = new News([
+        $news = News::create([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'user_id' => auth()->id(),
         ]);
 
-        $news->save();
+        if ($request->hasFile('media')) {
+            $news->addMediaFromRequest('media')->toMediaCollection('images');
+        }
 
         return redirect('/news')->with('success', 'News saved!');
     }
