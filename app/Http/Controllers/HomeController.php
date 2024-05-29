@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {   
         Flash::success('El objeto se ha guardado correctamente.');
-        return view('home');
+        $news = News::all();
+        return view('home', compact('news'));
     }
 }

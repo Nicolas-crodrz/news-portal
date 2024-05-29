@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                @php $news = \App\Models\News::all(); @endphp
+
                 <div class="card-body">
                     @if ($news->count() > 0)
                         <div class="list-group">
