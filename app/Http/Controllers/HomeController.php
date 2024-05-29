@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -22,7 +24,8 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
+        Flash::success('El objeto se ha guardado correctamente.');
         return view('home');
     }
 }
