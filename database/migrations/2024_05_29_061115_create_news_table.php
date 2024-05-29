@@ -9,13 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('news', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('news', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('user_id');
+        $table->string('title');
+        $table->text('content');
+        $table->timestamps();
+
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
+}
+
 
     /**
      * Reverse the migrations.
