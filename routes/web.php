@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 
 
-
-Route::resource('news', NewsController::class)->middleware('auth');
-
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->name('login');
+Auth::routes();
+Route::resource('news', NewsController::class)->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
