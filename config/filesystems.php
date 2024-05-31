@@ -36,13 +36,21 @@ return [
             'throw' => false,
         ],
 
+        
+        'public_img' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
+            'url' => env('APP_URL').'/img',
+            'visibility' => 'public',
+            ],
+
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => storage_path('app/public/img'),
+            'url' => env('APP_URL').'/storage/img',
             'visibility' => 'public',
-            'throw' => false,
         ],
+
 
         's3' => [
             'driver' => 's3',

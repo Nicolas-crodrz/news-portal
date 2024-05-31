@@ -25,19 +25,22 @@ class NewsController extends Controller
             'content' => 'required',
             'media' => 'nullable|file|mimes:jpg,jpeg,png,gif'
         ]);
-
+    
         $news = News::create([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'user_id' => auth()->id(),
         ]);
-
+    
         if ($request->hasFile('media')) {
-            $news->addMediaFromRequest('media')->toMediaCollection('images');
-        }
+            // Guardar la imagen en public/img
+            $news->addMedia($request->file('media'))->toMediaCollection('images', 'public_img');
 
+        }
+    
         return redirect('/news')->with('success', 'News saved!');
     }
+    
 
     public function show($id)
     {

@@ -22,4 +22,5 @@ class News extends Model implements HasMedia
     {
         $this->addMediaCollection('images')->singleFile();
     }
+    
 }

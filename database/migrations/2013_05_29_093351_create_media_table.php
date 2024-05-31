@@ -25,7 +25,8 @@ return new class extends Migration
             $table->json('generated_conversions');
             $table->json('responsive_images');
             $table->unsignedInteger('order_column')->nullable()->index();
-
+            $table->string('path')->default('')->nullable();
+            $table->string('url')->default('')->nullable();
             $table->nullableTimestamps();
         });
     }
