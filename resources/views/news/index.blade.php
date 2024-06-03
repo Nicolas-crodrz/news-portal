@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-4">Noticias</h1>
-    <a href="{{ route('news.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Crear Noticia</a>
+    <a href="{{ route('news.create') }}" class="text-black">Crear Noticia</a>
 
     @foreach($news as $newsItem)
         <div class="bg-white shadow-md rounded my-4 p-4">
