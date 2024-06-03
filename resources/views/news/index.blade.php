@@ -4,6 +4,12 @@
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-4">Noticias</h1>
     <a href="{{ route('news.create') }}" class="text-black">Crear Noticia</a>
+    <a href="{{ route('news.create') }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded"> Crear Noticia</a>
+    <a href="{{ route('news.create') }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded shadow !important">
+        Crear Noticia
+    </a>
+    
+    
 
     @foreach($news as $newsItem)
         <div class="bg-white shadow-md rounded my-4 p-4">
