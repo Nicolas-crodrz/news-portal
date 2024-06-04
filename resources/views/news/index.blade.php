@@ -3,7 +3,9 @@
 @section('content')
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mb-4">Noticias</h1>
-        <a href="{{ route('news.create') }}" class="">Crear Noticia</a>
+        <a href="{{ route('news.create') }}"
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Crear
+            Noticia</a>
 
 
 
