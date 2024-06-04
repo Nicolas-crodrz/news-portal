@@ -29,7 +29,7 @@
                     <div class="mt-8">
                         <a href="{{ route('news.show', $newsItem->id) }}"
                             class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Leer mas...</a>
-                        <a href="{{ route('news.show', $newsItem->id) }}"
+                        <a href="{{ route('news.edit', $newsItem->id) }}"
                             class="bg-blue-500 text-gray-100 px-5 py-3 font-semibold rounded">Editar</a>
                         <a href="{{ route('news.show', $newsItem->id) }}"
                             class="bg-red-500 text-gray-100 px-5 py-3 font-semibold rounded">eliminar</a>
