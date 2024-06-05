@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.flash-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.flash-message.success {
+  background-color: #28a745; /* Verde */
+  color: #fff;
+}
+
+.flash-message.error {
+  background-color: #dc3545; /* Rojo */
+  color: #fff;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #007bff; /* Azul */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: progress 2.5s linear forwards;
+  visibility: hidden;
+}
+
+@keyframes progress {
+  0% { width: 100%; }
+  100% { width: 0; }
+}

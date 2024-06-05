@@ -1,42 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class=" bg-gray-100  lg:py-12 lg:flex lg:justify-center lg:flex-col  lg:items-center ">
-        <h1 class="text-2xl font-bold mb-4">Noticias</h1>
-        <a href="{{ route('news.create') }}"
-            class="bg-blue-500 hover:bg-blue-400 px-4 py-2 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded">Crear
-            Noticia</a>
-    </div>
-    @foreach ($news as $newsItem)
-        <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center">
-            <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
-                <div class="lg:w-1/2">
-                    <div class="h-64 bg-cover lg:rounded-lg lg:h-full">
-                        @if ($newsItem->hasMedia('images'))
-                            <img src="/img/{{ $newsItem->getFirstMedia('images')->id }}/{{ $newsItem->getFirstMedia('images')->file_name }}"
-                                alt="{{ $newsItem->title }}">
-                        @endif
-                    </div>
-                </div>
-                <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
-                    <h2 class="text-3xl text-gray-800 font-bold">{{ $newsItem->title }}
-                    </h2>
-                    {{-- P --}}
-                    <p class="mt-4 text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi
-                        reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam
-                        mollitia
-                        iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur.</p>
-                    <div class="mt-8">
-                        <a href="{{ route('news.show', $newsItem->id) }}"
-                            class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Leer mas...</a>
-                        <a href="{{ route('news.edit', $newsItem->id) }}"
-                            class="bg-blue-500 text-gray-100 px-5 py-3 font-semibold rounded">Editar</a>
-                        <a href="{{ route('news.show', $newsItem->id) }}"
-                            class="bg-red-500 text-gray-100 px-5 py-3 font-semibold rounded">eliminar</a>
-                    </div>
+@if (session()->has('flash_notification.message'))
+<div class="flash-message {{ session('flash_notification.level') }}">
+    {{ session('flash_notification.message') }}
+    <div class="progress-bar"></div>
+</div>
+@endif
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto max-w-7x1">
+            <div class="flex flex-wrap w-full mb-4 p-4">
+                <div class="w-full mb-6 lg:mb-0">
+                    <h1 class="sm:text-4xl text-5xl font-medium font-bold title-font mb-2 text-gray-900">News</h1>
+                    <div class="h-1 w-20 bg-indigo-500 rounded"></div>
                 </div>
             </div>
+            @if (session()->has('flash_notification.message'))
+                <div class="flash-message {{ session('flash_notification.level') }}">
+                    {{ session('flash_notification.message') }}
+                    <div class="progress-bar"></div>
+                </div>
+            @endif
+            <div class="flex flex-wrap -m-4">
+                @foreach ($news as $newsItem)
+                    <div class="xl:w-1/3 md:w-1/2 p-4">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <img class="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-full object-cover object-center mb-6" src="/img/{{ $newsItem->getFirstMedia('images')->id }}/{{ $newsItem->getFirstMedia('images')->file_name }}" alt="{{ $newsItem->title }}">
+                            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ $newsItem->title }}</h3>
+                            <p class="leading-relaxed text-base">{!! htmlspecialchars_decode($newsItem->content)!!}</p>
+                            <div class="mt-4">
+                                <a href="{{ route('news.show', $newsItem->id) }}" class="text-indigo-500 inline-flex items-center">Leer mas...</a>
+                                <a href="{{ route('news.edit', $newsItem->id) }}" class="mx-4 text-blue-500 inline-flex items-center">Editar</a>
+                                <a href="{{ route('news.destroy', $newsItem->id) }}" class="text-red-500 inline-flex items-center" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que quieres eliminar esta noticia?')){document.getElementById('delete-form-{{ $newsItem->id }}').submit();}">Eliminar</a>
+                                <form id="delete-form-{{ $newsItem->id }}" action="{{ route('news.destroy', $newsItem->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <p class="text-sm text-gray-500 mb-4 inline-flex mx-14">{{ $newsItem->created_at->diffForHumans() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        </div>
-    @endforeach
+    </section>
 @endsection

@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Laracasts\Flash\FlashServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -183,6 +183,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Flash' => Laracasts\Flash\Flash::class,
     ])->toArray(),
 
 ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Flash;
 
 class NewsController extends Controller
 {
@@ -37,8 +38,12 @@ class NewsController extends Controller
             $news->addMedia($request->file('media'))->toMediaCollection('images', 'public_img');
 
         }
-    
-        return redirect('/news')->with('success', 'News saved!');
+
+        // Flash message
+        session()->flash('flash_notification.message', 'Noticia creada correctamente');
+        session()->flash('flash_notification.level', 'success');
+   
+        return redirect('/news');
     }
     
 
@@ -65,15 +70,24 @@ class NewsController extends Controller
         $news->title = $request->get('title');
         $news->content = $request->get('content');
         $news->save();
+        // Flash message
+        session()->flash('flash_notification.message', 'Noticia actualizada correctamente');
+        session()->flash('flash_notification.level', 'success');
 
-        return redirect('/news')->with('success', 'News updated!');
+        return redirect('/news');
     }
 
     public function destroy($id)
     {
         $news = News::find($id);
         $news->delete();
-
-        return redirect('/news')->with('success', 'News deleted!');
+    
+        // Flash message
+        session()->flash('flash_notification.message', 'Noticia eliminada correctamente');
+        session()->flash('flash_notification.level', 'error');
+        
+        return redirect('/news');
     }
+    
+    
 }

@@ -12,7 +12,7 @@
                 </div>
             @endif
             <div class="prose prose-lg max-w-none text-gray-800">
-                {!! nl2br(e($news->content)) !!}
+                {!! htmlspecialchars_decode(nl2br(e($news->content))) !!}
             </div>
             <div class="mt-8">
                 <a href="{{ route('news.index') }}" class="inline-block text-blue-500 hover:text-blue-700">
