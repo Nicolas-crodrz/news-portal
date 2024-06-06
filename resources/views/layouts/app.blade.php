@@ -13,14 +13,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Tinymce -->
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     @vite('resources/css/app.css')
-    @vite('resources/js/flash-messages.js')
 </head>
 
 <body>
@@ -70,21 +70,21 @@
                                     aria-labelledby="navbarDropdown">
                                     <!-- home -->
                                     <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    href="{{ route('home') }}">
-                                    {{ __('Home') }} 
-                                </a>
-                                <!-- news -->
-                                <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    href="{{ route('news.index') }}">
-                                    {{ __('News') }}
-                                </a>
+                                        href="{{ route('home') }}">
+                                        {{ __('Home') }}
+                                    </a>
+                                    <!-- news -->
+                                    <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        href="{{ route('news.index') }}">
+                                        {{ __('News') }}
+                                    </a>
 
-                                <!-- create new -->
-                                <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    href="{{ route('news.create') }}">
-                                    {{ __('Create new') }}
-                                </a>
-                                <!-- Logout -->
+                                    <!-- create new -->
+                                    <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        href="{{ route('news.create') }}">
+                                        {{ __('Create new') }}
+                                    </a>
+                                    <!-- Logout -->
                                     <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                                         href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -108,12 +108,17 @@
     </div>
 
     <script>
-        document.getElementById('navbarDropdown').addEventListener('click', function() { // llamamos al elemento con el id 'navbarDropdown' 
-            let dropdownMenu = document.querySelector('.dropdown-menu'); // llamamos al elemento con la clase 'dropdown-menu'
-            dropdownMenu.classList.toggle('hidden'); // añadimos o eliminamos la clase 'hidden' al elemento con la clase 'dropdown-menu
-        });
+        document.getElementById('navbarDropdown').addEventListener('click',
+            function() { // llamamos al elemento con el id 'navbarDropdown' 
+                let dropdownMenu = document.querySelector(
+                    '.dropdown-menu'); // llamamos al elemento con la clase 'dropdown-menu'
+                dropdownMenu.classList.toggle(
+                    'hidden'); // añadimos o eliminamos la clase 'hidden' al elemento con la clase 'dropdown-menu
+            });
 
-        let mobileNavButton = document.querySelector('[data-collapse-toggle="navbarSupportedContent"]'); // llamamos al elemento con el atributo 'data-collapse-toggle="navbarSupportedContent"'
+        let mobileNavButton = document.querySelector(
+            '[data-collapse-toggle="navbarSupportedContent"]'
+            ); // llamamos al elemento con el atributo 'data-collapse-toggle="navbarSupportedContent"'
         mobileNavButton.addEventListener('click', function() {
             let dropdownMenu = document.getElementById('navbarSupportedContent');
             dropdownMenu.classList.toggle('hidden');
