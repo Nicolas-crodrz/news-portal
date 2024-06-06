@@ -22,11 +22,10 @@
     @vite('resources/css/app.css')
     @vite('resources/js/flash-messages.js')
 </head>
-</head>
 
 <body>
     <div id="app">
-        <nav class="bg-white border-gray-200 shadow-sm dark:bg-gray-900">
+        <nav class="bg-white border-gray-200 shadow-sm dark:bg-gray-900 fixed w-full z-50">
             <div class="container mx-auto px-4 flex flex-wrap items-center justify-between">
                 <a class="flex items-center text-xl font-semibold text-gray-900 dark:text-white"
                     href="{{ url('/') }}">
@@ -61,14 +60,31 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown relative">
+                            <li class="nav-item dropdown relative ">
                                 <button id="navbarDropdown"
-                                    class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer focus:outline-none"
+                                    class=" py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer focus:outline-none"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </button>
                                 <div class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 dark:bg-gray-800 z-50"
                                     aria-labelledby="navbarDropdown">
+                                    <!-- home -->
+                                    <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    href="{{ route('home') }}">
+                                    {{ __('Home') }} 
+                                </a>
+                                <!-- news -->
+                                <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    href="{{ route('news.index') }}">
+                                    {{ __('News') }}
+                                </a>
+
+                                <!-- create new -->
+                                <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    href="{{ route('news.create') }}">
+                                    {{ __('Create new') }}
+                                </a>
+                                <!-- Logout -->
                                     <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                                         href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -77,24 +93,32 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                         @csrf
                                     </form>
+
                                 </div>
                             </li>
-                            <script>
-                                document.getElementById('navbarDropdown').addEventListener('click', function() {
-                                    var dropdownMenu = this.nextElementSibling;
-                                    dropdownMenu.classList.toggle('hidden');
-                                });
-                            </script>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-16 py-4">
             @yield('content')
         </main>
     </div>
+
+    <script>
+        document.getElementById('navbarDropdown').addEventListener('click', function() { // llamamos al elemento con el id 'navbarDropdown' 
+            let dropdownMenu = document.querySelector('.dropdown-menu'); // llamamos al elemento con la clase 'dropdown-menu'
+            dropdownMenu.classList.toggle('hidden'); // añadimos o eliminamos la clase 'hidden' al elemento con la clase 'dropdown-menu
+        });
+
+        let mobileNavButton = document.querySelector('[data-collapse-toggle="navbarSupportedContent"]'); // llamamos al elemento con el atributo 'data-collapse-toggle="navbarSupportedContent"'
+        mobileNavButton.addEventListener('click', function() {
+            let dropdownMenu = document.getElementById('navbarSupportedContent');
+            dropdownMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 
 </html>
