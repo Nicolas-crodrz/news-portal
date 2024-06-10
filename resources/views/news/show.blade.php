@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h1 class="text-3xl font-extrabold text-gray-900 mb-4">{{ $news->title }}</h1>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{{ $news->title }}</h1>
             <p class="text-sm text-gray-500 mb-4">{{ $news->created_at->diffForHumans() }}</p>
             @if ($news->hasMedia('images'))
                 <div class="mb-6">
