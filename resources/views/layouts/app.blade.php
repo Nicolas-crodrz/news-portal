@@ -20,6 +20,8 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- script para mostrar y ocultar el dropdown -->
     <script>
         document.getElementById('navbarDropdown').addEventListener('click',
             function() {
