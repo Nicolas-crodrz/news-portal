@@ -22,6 +22,7 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->nam
 
 Route::resource('users', UserController::class);
 
+Route::get('/index', [App\Http\Controllers\IndexController::class, 'index'])->name('index')->middleware('auth');
 
 // route admin, admin this layouts folder
 Route::get('/admin', function () {
