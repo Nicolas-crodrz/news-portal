@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session()->has('flash_notification.message'))
+    <!-- @if (session()->has('flash_notification.message'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
@@ -13,7 +13,7 @@
                 });
             });
         </script>
-    @endif
+    @endif -->
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto max-w-7x1">
             <div class="flex flex-wrap w-full mb-4 p-4">
@@ -22,12 +22,12 @@
                     <div class="h-1 w-20 bg-indigo-500 rounded"></div>
                 </div>
             </div>
-            @if (session()->has('flash_notification.message'))
+            <!-- @if (session()->has('flash_notification.message'))
                 <div class="flash-message {{ session('flash_notification.level') }}">
                     {{ session('flash_notification.message') }}
                     <div class="progress-bar"></div>
                 </div>
-            @endif
+            @endif -->
             <div class="flex flex-wrap -m-4">
                 @foreach ($news as $newsItem)
                     <div class="xl:w-1/3 md:w-1/2 p-4">
